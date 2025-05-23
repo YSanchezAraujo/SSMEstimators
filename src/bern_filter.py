@@ -14,7 +14,7 @@ def univariate_normal_sample(key, mean, scale, shape):
     snormal_variates = random.normal(key, shape)
     return mean + scale * snormal_variates
 
-@partial(jit)
+@jit
 def filter_step(
     key: jax.Array,
     obs: jax.Array,                             # y
@@ -108,7 +108,7 @@ def run_particle_filter(
 
     return filter_results
     
-@partial(jit)
+@jit
 def backward_simulation_step(
     carry: jax.Array,
     scan_outputs: jax.Array,
